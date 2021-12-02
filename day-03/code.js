@@ -1032,22 +1032,3 @@ for (var i = 0; i < input.length; i+=2) {
     }
 }
 console.log('Depth: ' + depth + ', horizontal: ' + horizontal + ', multiplied: ' + (depth * horizontal));
-
-console.log('Result:' +
-    document.querySelector('body').innerText.split(/s*\ns*/).filter(line => line.length > 0)
-        .reduce((acc, line) => {
-            var delta = parseInt(line.split(/\s+/)[1]);
-            if (line.startsWith('down')) {
-                acc.aim += delta;
-            } else if (line.startsWith('up')) {
-                acc.aim -= delta;
-            } else if (line.startsWith('forward')) {
-                acc.horizontal += delta;
-                acc.depth += (acc.aim * delta);
-            } else {
-                console.log('What the f is: ' + line);
-            }
-            acc.multiplied = acc.depth * acc.horizontal;
-            return acc;
-        },
-        {depth:0, horizontal: 0, aim: 0}));
